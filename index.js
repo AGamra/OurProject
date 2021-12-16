@@ -1,3 +1,4 @@
+JS
 const express = require('express')
 const app = express();
 var FastText = require('node-fasttext');
@@ -33,6 +34,7 @@ app.get('/fasttext/', function(req, res) {
 
 function getFastTextResults(statement) {
 	//predict returns an array with the input and predictions for best cateogires
+  var result = null;
 	FastText.predict(
 		"model.bin", 3,
 		[statement],
@@ -42,9 +44,9 @@ function getFastTextResults(statement) {
 			console.log(error)
 			return;
 		  }
-		  console.log(success)
+		  result=success;
 		})
-	return "success!";
+	return result;
 }
 
 app.listen(8000, () => {
